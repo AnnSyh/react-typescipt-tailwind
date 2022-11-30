@@ -1,34 +1,47 @@
 import React, { useState } from "react"
 import { IProduct } from "../models"
 
+
 interface ProductProps {
   product: IProduct
+  onClick?: () => void
 }
 
 export function Product({ product }: ProductProps) {
+  const [card, setCard] = useState(true);
   const [details, setDetails] = useState(false);
+  
+  const cardClass = card ? 'block' : 'hidden'
+  const cardClases = ['border p-5 m-5 relative', cardClass]
+  
+  const btnBgClassName = details ? 'bg-yellow-400' : 'bg-blue-400'
+  const btnClasses = ['py-2 px-4 border', btnBgClassName]
 
-  const btnBgClassName = details? 'bg-yellow-400' : 'bg-blue-400'
-
-  const btnClasses =['py-2 px-4 border', btnBgClassName]
+  function onClick() {
+    setCard(prev => !prev)
+  }
 
   return (
-    <div className="border p-5 m-5">
+      <div className={cardClases.join(' ')}>
 
-      <img className="w-1/6 m-auto" src={product.image} alt={product.title} />
-      <p>{product.title}</p>
-      <p className="font-bold">{product.price}</p>
-      <button
-        onClick={() => setDetails(prev => !prev)}
-        className={btnClasses.join(' ')}
-      >
-        {details ? 'Hide Details' : 'Show Details'}
-      </button>
-      {details && <div>
-        <p>{product.description}</p>
-        {/* <p>Rate: <span style={{fontWeight:'bold'}}>{product.rating.rate}</span></p> */}
-        {/* <p>Rate: <span style={{fontWeight:'bold'}}>{product?.rating?.rate}</span></p> // You may need an appropriate loader to handle this file type. */}
-      </div>}
-    </div>
+        <button
+          className='absolute top-0 right-0 rounded-full text-2xl px-4 py-2 text-gray-400 hover:text-black'
+          onClick={onClick}
+        >x</button>
+
+        <img className="w-1/6 m-auto" src={product.image} alt={product.title} />
+        <p>{product.title}</p>
+        <p className="font-bold">{product.price}</p>
+        <button
+          onClick={() => setDetails(prev => !prev)}
+          className={btnClasses.join(' ')}
+        >
+          {details ? 'Hide Details' : 'Show Details'}
+        </button>
+        {details && <div>
+          <p>{product.description}</p>
+          <p>Rate: <span style={{ fontWeight: 'bold' }}>{product?.rating?.rate}</span></p>
+        </div>}
+      </div>
   )
 }

@@ -1,5 +1,6 @@
 export interface IProduct {
   id?: number,
+  close?: boolean,
   title: string,
   price: number,
   description: string,
