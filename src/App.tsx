@@ -1,15 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom'
+import { AboutPage } from './pages/AboutPage';
+import { ProductsPage } from './pages/ProductsPage';
+import { Navigation } from './companents/Navigation'
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline text-red-500">
-        Hello world!
-      </h1>
-
-    </div>
-  );
+    <>
+      {/* <h1 className="text-3xl font-bold underline text-red-500"> Hello world!</h1> */}
+      <Navigation />
+      <Routes>
+        <Route path='/' element={<ProductsPage />} />
+        <Route path='/about' element={<AboutPage />} />
+      </Routes>
+    </>
+  )
 }
 
 export default App;
