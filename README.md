@@ -1,7 +1,6 @@
-# ts-react
+# react-typescipt-tailwind
 
 ## Установка и запуск
-
 - git clone git@github.com:AnnSyh/react-typescipt-tailwind.git - стягиваем проект
 - cd react-typescipt-tailwind/  - переходим в папку проекта
 - npm i - установка зависимостей
@@ -13,7 +12,12 @@
 - с помощью axios беру данные для карточек с https://fakestoreapi.com/
 - react-router-dom
 
-#--------------------------------------------------------
+## Функциональность:
+- проект содержит 2 стр 
+- гл -со списком карточек
+- и стр карточек на которой можно добавить карточку при помощи кнопки '+' и формы всплывающей при ее нажатие
+
+
 
 # Getting Started with Create React App
 
