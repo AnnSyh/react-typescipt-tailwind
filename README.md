@@ -1,3 +1,20 @@
+# ts-react
+
+## Установка и запуск
+
+- git clone git@github.com:AnnSyh/react-typescipt-tailwind.git - стягиваем проект
+- cd react-typescipt-tailwind/  - переходим в папку проекта
+- npm i - установка зависимостей
+- npm start - запуск проекта
+
+## Используемые технологии:
+- сборка react с Typescript
+- tailwind
+- с помощью axios беру данные для карточек с https://fakestoreapi.com/
+- react-router-dom
+
+#--------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
