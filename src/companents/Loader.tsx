@@ -1,21 +1,24 @@
 import React from "react";
 
+import { Watch } from 'react-loader-spinner'
+
 export function Loder() {
   return (
-    <>
+    <div className="justify-center" style={{flexDirection:'column',alignItems:'center',display:'flex'}}>
       <p className='text-center'>Loading.....</p>
 
-      <Grid
+      <Watch
         height="80"
         width="80"
+        radius="48"
         color="#4fa94d"
-        ariaLabel="grid-loading"
-        radius="12.5"
+        ariaLabel="watch-loading"
         wrapperStyle={{}}
-        wrapperClass=""
+        // wrapperClassName=""
         visible={true}
       />
-    </>
+
+    </div>
 
   )
 }
