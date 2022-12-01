@@ -24,8 +24,8 @@ export function CreateProduct({onCreate }: CreateProductProps) {
   const [error, setError] = useState('');
 
   const SubmitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError('');
+    event.preventDefault();    // отменяем стандартное поведение формы
+    setError('');             //чистим ошибку
 
     // базавая валидация
     if (value.trim().length === 0) { //если после обрезания пробелов value  пустое
@@ -35,8 +35,9 @@ export function CreateProduct({onCreate }: CreateProductProps) {
 
     productData.title = value;
     const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData);
-  
+
     onCreate(response.data);
+    // onCreate(productData);
   }
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,12 +48,21 @@ export function CreateProduct({onCreate }: CreateProductProps) {
   return (
     <form onSubmit={SubmitHandler}>
       <input
+        id='title'
         type="text"
         className='border py-2 px-4 mb-2 w-full outline-0'
         placeholder="Enter product title....."
         value={value}
         onChange={changeHandler}
       />
+      {/* <input
+        id='price'
+        type="text"
+        className='border py-2 px-4 mb-2 w-full outline-0'
+        placeholder="Enter product price....."
+        value={value}
+        onChange={changeHandler}
+      /> */}
 
       {error && <ErrorMessage error={error} />}
 

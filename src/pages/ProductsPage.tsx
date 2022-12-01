@@ -5,6 +5,8 @@ import { Loder } from './../companents/Loader';
 import { Modal } from './../companents/Modal';
 import { Product } from './../companents/Product';
 import { ModalContext } from './../context/ModalContext';
+
+import { OpenProductImg } from './../companents/OpenProductImg';
 // import { ProductContext } from './../context/ProductContext';
 import { useProducts } from './../hooks/products';
 import './../index.css';
@@ -29,6 +31,10 @@ export function ProductsPage() {
                                 />
                     )
       }
+
+      {/* {modal && <Modal title='OpenProductImg' onClose={() => close()}>
+        <OpenProductImg data-productId='3' />
+      </Modal>} */}
 
       {modal && <Modal title='Create new product' onClose={() => close()}>
         <CreateProduct onCreate={createHandler} />
