@@ -7,7 +7,7 @@ export function Navigation() {
       <span className="font-bold">React 2022</span>
       <span>
         <Link to='/' className="mr-2">Products</Link>
-        <Link to='/about'>About</Link>
+        <Link to='/locomotive-scroll'>LocomotiveScroll</Link>
       </span>
 
     </nav>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom'
-import { AboutPage } from './pages/AboutPage';
+import { LocomotiveScrollPage } from './pages/LocomotiveScrollPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { Navigation } from './companents/Navigation'
 
@@ -11,7 +11,8 @@ function App() {
       <Navigation />
       <Routes>
         <Route path='/' element={<ProductsPage />} />
-        <Route path='/about' element={<AboutPage />} />
+        <Route path='/locomotive-scroll' element={<LocomotiveScrollPage />} />
+        {/* <Route path='/about' element={<AboutPage />} /> */}
       </Routes>
     </>
   )
