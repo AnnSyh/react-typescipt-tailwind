@@ -9,7 +9,7 @@ export function LocomotiveScrollPage() {
   useEffect(() => {
 
     const body = document.body as HTMLAreaElement;
-    const backToTop = document.querySelector(".back-to-top");
+    const backToTop = document.querySelector(".back-to-top") as HTMLAreaElement;
     const opacityClass = "opacity-0";
     const visibilityClass = "invisible";
 
@@ -41,7 +41,7 @@ export function LocomotiveScrollPage() {
       "#2b70e3",
       "#b36a5e"
     ];
-    
+
     function getRandomColor() {
       const arrayLength = arrayOfColors.length;
       const randomValue = Math.random() * arrayLength;
@@ -49,38 +49,43 @@ export function LocomotiveScrollPage() {
       const color = arrayOfColors[roundedNumber];
       return color;
     }
-    
-    // scroll.on("call", (value, way, obj) => {
-    //   if (value === "randomizeTextColor") {
-    //     if (way === "enter") {
-    //       obj.el.style.color = getRandomColor();
-    //     }
-    //   } else if (value === "toggleBackToTop") {
-    //     if (way === "enter") {
-    //       backToTop.classList.add(opacityClass, visibilityClass);
-    //     } else {
-    //       backToTop.classList.remove(opacityClass, visibilityClass);
-    //     }
-    //   }
-    // });
-    
+
+
+    // @ts-ignore
+    scroll.on("call", (value, way, obj) => {
+      if (value === "randomizeTextColor") {
+        if (way === "enter") {
+          obj.el.style.color = getRandomColor();
+        }
+      } else if (value === "toggleBackToTop") {
+        if (way === "enter") {
+          backToTop.classList.add(opacityClass, visibilityClass);
+        } else {
+          backToTop.classList.remove(opacityClass, visibilityClass);
+        }
+      }
+    });
+
+
+
     scroll.on("scroll", (instance) => {
       const visibleSubSectionHeading = document.querySelector(
         ".sub-section h2.is-inview"
       );
-    
-      if (visibleSubSectionHeading) {
-        const a =visibleSubSectionHeading.parentElement  as HTMLAreaElement;
-        const parentSection = a.parentElement  as HTMLAreaElement;
 
-        // const bodyStyle = body.style  as HTMLAreaElement;
-        // bodyStyle.backgroundColor = parentSection.dataset.bgColor;
+      if (visibleSubSectionHeading) {
+        const a = visibleSubSectionHeading.parentElement as HTMLAreaElement;
+        const parentSection = a.parentElement as HTMLAreaElement;
+        const bodyStyle = body.style;
+        // @ts-ignore
+        bodyStyle.backgroundColor = parentSection.dataset.bgColor;
       } else {
         body.style.backgroundColor = "";
       }
     });
-    
-    
+
+
+
 
 
 
@@ -91,6 +96,7 @@ export function LocomotiveScrollPage() {
   return (
     <>
       <div data-scroll-container>
+
         <section id="intro" className="h-screen flex items-center justify-center text-center bg-green-200" data-scroll-section>
           <div className="container px-5 mx-auto">
             <h1 className="text-5xl font-bold" data-scroll data-scroll-repeat data-scroll-call="toggleBackToTop">A Simple Demo With <a className="underline" href="https://locomotivemtl.github.io/locomotive-scroll/" target="_blank">Locomotive Scroll</a></h1>

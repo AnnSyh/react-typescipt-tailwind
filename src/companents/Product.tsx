@@ -5,9 +5,13 @@ import { IProduct } from "../models"
 interface ProductProps {
   product: IProduct
   onClick?: () => void
+  clickImg?: () => void
 }
 
-export function Product({ product }: ProductProps) {
+export function Product(props:ProductProps) {
+
+console.log('props = ', props);
+
   const [card, setCard] = useState(true);
   const [details, setDetails] = useState(false);
   
@@ -21,6 +25,7 @@ export function Product({ product }: ProductProps) {
     setCard(prev => !prev)
   }
 
+
   return (
       <div className={cardClases.join(' ')}>
 
@@ -29,9 +34,9 @@ export function Product({ product }: ProductProps) {
           onClick={onClick}
         >x</button>
 
-        <img className="w-1/6 m-auto" src={product.image} alt={product.title} />
-        <p>{product.title}</p>
-        <p className="font-bold">{product.price}</p>
+        <img onClick={props.clickImg} className="w-1/6 m-auto" src={props.product.image} alt={props.product.title} />
+        <p>{props.product.title}</p>
+        <p className="font-bold">{props.product.price}</p>
         <button
           onClick={() => setDetails(prev => !prev)}
           className={btnClasses.join(' ')}
@@ -39,8 +44,8 @@ export function Product({ product }: ProductProps) {
           {details ? 'Hide Details' : 'Show Details'}
         </button>
         {details && <div>
-          <p>{product.description}</p>
-          <p>Rate: <span style={{ fontWeight: 'bold' }}>{product?.rating?.rate}</span></p>
+          <p>{props.product.description}</p>
+          <p>Rate: <span style={{ fontWeight: 'bold' }}>{props.product?.rating?.rate}</span></p>
         </div>}
       </div>
   )

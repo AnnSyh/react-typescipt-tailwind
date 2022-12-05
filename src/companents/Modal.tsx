@@ -14,7 +14,7 @@ export function Modal({ children, title, onClose }: ModalProps) {
         onClick={onClose}
       />
       <div
-        className="w-[500px] p-5 rounded bg-white fixed top-0 left-1/2 -translate-x-1/2 "
+        className="w-[500px] p-5 rounded bg-white fixed  left-1/2 -translate-x-1/2 "
       >
         <h1 className='text-2xl text-center md-2'>{title}</h1>
         {children}

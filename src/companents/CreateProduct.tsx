@@ -55,14 +55,6 @@ export function CreateProduct({onCreate }: CreateProductProps) {
         value={value}
         onChange={changeHandler}
       />
-      {/* <input
-        id='price'
-        type="text"
-        className='border py-2 px-4 mb-2 w-full outline-0'
-        placeholder="Enter product price....."
-        value={value}
-        onChange={changeHandler}
-      /> */}
 
       {error && <ErrorMessage error={error} />}
 

@@ -6,8 +6,6 @@ import { Modal } from './../companents/Modal';
 import { Product } from './../companents/Product';
 import { ModalContext } from './../context/ModalContext';
 
-import { OpenProductImg } from './../companents/OpenProductImg';
-// import { ProductContext } from './../context/ProductContext';
 import { useProducts } from './../hooks/products';
 import './../index.css';
 import { IProduct } from './../models';
@@ -15,26 +13,41 @@ import { IProduct } from './../models';
 export function ProductsPage() {
   const { products, error, loading, addProduct } = useProducts();
   const { modal, open, close } = useContext(ModalContext);
+ 
 
   const createHandler = (product: IProduct) => {
     close();
     addProduct(product);
   }
 
+
+  const [imgProductOpen, setImgProductOpen] = useState(false); // отвечает за модалк =у с картинкой
+
+  const clickImg = () => {
+    console.log('1 - clickImg');
+    // open()
+
+    setImgProductOpen(prev => !prev) //откр/закр модалку с картинкой
+  }
+
+
   return (
+    <>
     <div className='container m-auto text-center grid grid-cols-2 grid-flow-row gap-2'>
       {loading && <Loder />}
       {error && <ErrorMessage error={error} />}
       {products.map(product => <Product
                                   key={product.id}
                                   product={product}
+                                  clickImg={clickImg}
                                 />
                     )
       }
 
-      {/* {modal && <Modal title='OpenProductImg' onClose={() => close()}>
-        <OpenProductImg data-productId='3' />
-      </Modal>} */}
+
+      {imgProductOpen && <Modal title='Img product' onClose={() => close()}>
+        <p>imgProductOpen</p>
+      </Modal>}
 
       {modal && <Modal title='Create new product' onClose={() => close()}>
         <CreateProduct onCreate={createHandler} />
@@ -46,5 +59,6 @@ export function ProductsPage() {
       >+</button>
 
     </div>
+    </>
   );
 }
