@@ -4,6 +4,7 @@ import { IProduct } from "../models";
 import { ErrorMessage } from "./ErrorMessage";
 
 const productData: IProduct = {
+  id: 0,
   title: 'test product',
   price: 13.5,
   description: 'lorem ipsum set',
@@ -19,7 +20,7 @@ interface CreateProductProps {
   onCreate: (product: IProduct) => void
 }
 
-export function CreateProduct({onCreate }: CreateProductProps) {
+export function CreateProduct({ onCreate }: CreateProductProps) {
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
 

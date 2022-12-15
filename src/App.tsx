@@ -4,17 +4,20 @@ import { LocomotiveScrollPage } from './pages/LocomotiveScrollPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { Navigation } from './companents/Navigation'
 
+import Alert from './alert/Alert';
+import { AlertProvider } from "./alert/AlertContext";
+
 function App() {
   return (
-    <>
-      {/* <h1 className="text-3xl font-bold underline text-red-500"> Hello world!</h1> */}
+    // <AlertProvider value={alert}>
+    <AlertProvider>
+      <Alert />
       <Navigation />
       <Routes>
         <Route path='/' element={<ProductsPage />} />
         <Route path='/locomotive-scroll' element={<LocomotiveScrollPage />} />
-        {/* <Route path='/about' element={<AboutPage />} /> */}
       </Routes>
-    </>
+    </AlertProvider>
   )
 }
 
