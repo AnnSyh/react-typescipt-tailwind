@@ -9,8 +9,8 @@ type ConfirmDeleteProductProps = {
 }
 
 export const ConfirmDeleteProduct = (props: ConfirmDeleteProductProps) => {
-  console.log('ConfirmDeleteProduct: props.product = ', props.product);
-  console.log('ConfirmDeleteProduct: props.removeHandler = ', props.removeHandler);
+  // console.log('ConfirmDeleteProduct: props.product = ', props.product);
+  // console.log('ConfirmDeleteProduct: props.removeHandler = ', props.removeHandler);
 
 
   return (

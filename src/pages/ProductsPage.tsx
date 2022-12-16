@@ -60,20 +60,23 @@ export function ProductsPage() {
     setSelectedProductClickedCross(product)
   }
 
+
+  const [newProducts, setNewProducts] = useState<IProduct[]>(products)
+
   const removeHandler = (product: IProduct) => {
-    console.log('removeHandler product = ', product);
-    console.log('selectedProductClickedCross = ', selectedProductClickedCross);
+    console.log('removeHandler: product.id = ', product.id);
+    console.log('removeHandler: products = ', products);
 
-    // products.map((item) => {
-    //   //надо вырезать эл-ты совпадающие с входящим
-    // })
+    //надо вырезать эл-ты совпадающие с входящим
+    const newProducts = products.filter(item => item.id !== product.id);
 
-    // setProducts(prev => prev.filter(product => product.id !== id))
+    console.log('removeHandler: newProducts = ', newProducts);
+
+
+    //надо вырезать эл-ты совпадающие с входящим
+    // setProducts(prev => prev.filter(item => item.id !== product.id))
     // close()
-
   }
-
-  const [newProducts, setNewProducts] = useState(products)
 
 
   return (
@@ -93,19 +96,13 @@ export function ProductsPage() {
         {loading && <Loder />}
         {error && <ErrorMessage error={error} />}
 
-        {/* {model.map(product => */}
         {products.map(
-          (product, index) =>
+          (product) =>
             <Product
               key={product.id}
               product={product}
               passItem={passItem}
               modalShowDeleteProduct={modalShowDeleteProduct}
-            // onClick={() => {
-            //   const newProducts = [...products]
-            //   newProducts.splice(index, 1)
-            //   setNewProducts(newProducts)
-            // }}
             />
         )
         }
