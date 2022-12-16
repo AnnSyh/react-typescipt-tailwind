@@ -14,7 +14,7 @@ import { IProduct } from '../models';
 import { useAlert } from "../alert/AlertContext";
 
 export function ProductsPage() {
-  const { products, error, loading, addProduct } = useProducts();
+  const { products, setProducts, error, loading, addProduct } = useProducts();
 
   const [modal, setModal] = useState({
     modalCreateProduct: false,
@@ -60,22 +60,11 @@ export function ProductsPage() {
     setSelectedProductClickedCross(product)
   }
 
-
-  const [newProducts, setNewProducts] = useState<IProduct[]>(products)
-
   const removeHandler = (product: IProduct) => {
-    console.log('removeHandler: product.id = ', product.id);
-    console.log('removeHandler: products = ', products);
-
     //надо вырезать эл-ты совпадающие с входящим
-    const newProducts = products.filter(item => item.id !== product.id);
-
-    console.log('removeHandler: newProducts = ', newProducts);
-
-
-    //надо вырезать эл-ты совпадающие с входящим
-    // setProducts(prev => prev.filter(item => item.id !== product.id))
-    // close()
+    // const newProducts = products.filter(item => item.id !== product.id);
+    setProducts(products.filter(item => item.id !== product.id))
+    setModal({ ...modal, confirmDeleteProduct: false })
   }
 
 

@@ -31,5 +31,5 @@ export function useProducts() {
     fetchProducts();
   }, []);
 
-  return { products, error, loading, addProduct };
+  return { products, setProducts, error, loading, addProduct };
 }
