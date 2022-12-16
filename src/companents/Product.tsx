@@ -1,12 +1,17 @@
 import React, { useState } from "react"
 import { IProduct } from "../models"
+import { FaTimes } from "react-icons/fa"
 
 interface ProductProps {
   product: IProduct
   passItem: (product: IProduct) => void
+  modalShowDeleteProduct: (product: IProduct) => void
+  // removeHandler: (product: IProduct) => void
+  // removeHandler: (product: IProduct, index: number) => void
+  // onClick: (product: IProduct) => void
 }
 
-export function Product({ product, passItem }: ProductProps) {
+export function Product({ product, passItem, modalShowDeleteProduct }: ProductProps) {
 
   const [card, setCard] = useState(true);
   const [details, setDetails] = useState(false);
@@ -17,20 +22,23 @@ export function Product({ product, passItem }: ProductProps) {
   const btnBgClassName = details ? 'bg-yellow-400' : 'bg-blue-400'
   const btnClasses = ['py-2 px-4 border', btnBgClassName]
 
-  function hideCard() {
+  const hideCard = () => {
+    console.log('del card');
     setCard(prev => !prev)
   }
 
   return (
     <>
       <div className={cardClases.join(' ')}>
-        <button
-          className='absolute top-0 right-0 rounded-full text-2xl px-4 py-2 text-gray-400 hover:text-black'
-          onClick={hideCard}
-        >x</button>
+        <FaTimes
+          className="hover:cursor-pointer absolute top-3 right-3"
+          // onClick={hideCard} 
+          onClick={() => modalShowDeleteProduct(product)}
+        // hideCard={hideCard}
+        />
         <img
           onClick={() => passItem(product)}
-          className="w-1/6 m-auto"
+          className="w-1/6 m-auto cursor-pointer"
           src={product.image}
           alt={product.title} />
         <p>{product.title}</p>
