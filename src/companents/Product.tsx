@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { IProduct } from "../models"
-import { FaTimes } from "react-icons/fa"
+// import { FaTimes } from "react-icons/fa"
+import { FaTimes } from '../../node_modules/react-icons/fa'
 
 interface ProductProps {
   product: IProduct
