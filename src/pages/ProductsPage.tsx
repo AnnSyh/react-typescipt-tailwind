@@ -5,7 +5,6 @@ import { Loder } from '../companents/Loader';
 import { Modal } from '../companents/Modal';
 import { Product } from '../companents/Product';
 import { OpenedImg } from '../companents/OpenedImg';
-import { ModalContext } from '../context/ModalContext';
 
 import { useProducts } from '../hooks/products';
 import '../index.css';
@@ -16,9 +15,6 @@ import { useAlert } from "../alert/AlertContext";
 export function ProductsPage() {
   const { products, error, loading, addProduct } = useProducts();
 
-  // const { modal, open, close } = useContext(ModalContext);
-  // const { modal: imgProductModal, open: imgProductOpen, close: imgProductClose } = useContext(ModalContext);
-
   const [modal, setModal] = useState({
     modal1: false,
     modal2: false
@@ -28,10 +24,10 @@ export function ProductsPage() {
   const [alert, setAlert] = useState(true);
 
   const createHandler = (product: IProduct) => {
-    // close();
     setModal({ ...modal, modal1: false })
     addProduct(product);
   }
+
   //запоминаем выбранную карточку продукта и устанавливаем ее дефолтное значение
   const [selectedProduct, setSelectedProduct] = useState({
     id: 0,
@@ -43,14 +39,9 @@ export function ProductsPage() {
   });
 
   const passItem = (product: IProduct) => {
-    // imgProductOpen()
     setModal({ ...modal, modal2: true })
     setSelectedProduct(product)
-
   }
-
-  // console.log('ProductsPage  modal = ', modal);
-  // console.log('ProductsPage  imgProductModal = ', imgProductModal);
 
   return (
     <>
@@ -80,7 +71,6 @@ export function ProductsPage() {
 
         {modal.modal1 && <Modal
           title='Create new product'
-          // onClose={() => close()}
           onClose={() => setModal({ ...modal, modal1: false })}
         >
           <CreateProduct onCreate={createHandler} />
@@ -88,17 +78,13 @@ export function ProductsPage() {
 
         {modal.modal2 && <Modal
           title='Img product'
-          // onClose={() => imgProductClose()}
           onClose={() => setModal({ ...modal, modal2: false })}
         >
           <OpenedImg product={selectedProduct} />
         </Modal>}
 
-
-
         <button
           className='border fixed bottom-0 right-0 rounded-full bg-red-500 text-2xl px-4 py-2 hover:text-white'
-          // onClick={() => open()}
           onClick={() => setModal({ ...modal, modal1: true })}
         >+</button>
 
