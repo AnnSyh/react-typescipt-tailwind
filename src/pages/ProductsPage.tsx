@@ -16,14 +16,20 @@ import { useAlert } from "../alert/AlertContext";
 export function ProductsPage() {
   const { products, error, loading, addProduct } = useProducts();
 
-  const { modal, open, close } = useContext(ModalContext);
-  const { modal: imgProductModal, open: imgProductOpen, close: imgProductClose } = useContext(ModalContext);
+  // const { modal, open, close } = useContext(ModalContext);
+  // const { modal: imgProductModal, open: imgProductOpen, close: imgProductClose } = useContext(ModalContext);
+
+  const [modal, setModal] = useState({
+    modal1: false,
+    modal2: false
+  })
 
   const { show } = useAlert();
   const [alert, setAlert] = useState(true);
 
   const createHandler = (product: IProduct) => {
-    close();
+    // close();
+    setModal({ ...modal, modal1: false })
     addProduct(product);
   }
   //запоминаем выбранную карточку продукта и устанавливаем ее дефолтное значение
@@ -37,14 +43,14 @@ export function ProductsPage() {
   });
 
   const passItem = (product: IProduct) => {
-    console.log('passItem = ', passItem);
-    open()
+    // imgProductOpen()
+    setModal({ ...modal, modal2: true })
     setSelectedProduct(product)
 
   }
 
-  console.log('ProductsPage  modal = ', modal);
-  console.log('ProductsPage  imgProductModal = ', imgProductModal);
+  // console.log('ProductsPage  modal = ', modal);
+  // console.log('ProductsPage  imgProductModal = ', imgProductModal);
 
   return (
     <>
@@ -72,16 +78,18 @@ export function ProductsPage() {
         )
         }
 
-        {modal && <Modal
+        {modal.modal1 && <Modal
           title='Create new product'
-          onClose={() => close()}
+          // onClose={() => close()}
+          onClose={() => setModal({ ...modal, modal1: false })}
         >
           <CreateProduct onCreate={createHandler} />
         </Modal>}
 
-        {imgProductModal && <Modal
+        {modal.modal2 && <Modal
           title='Img product'
-          onClose={() => imgProductClose()}
+          // onClose={() => imgProductClose()}
+          onClose={() => setModal({ ...modal, modal2: false })}
         >
           <OpenedImg product={selectedProduct} />
         </Modal>}
@@ -90,7 +98,8 @@ export function ProductsPage() {
 
         <button
           className='border fixed bottom-0 right-0 rounded-full bg-red-500 text-2xl px-4 py-2 hover:text-white'
-          onClick={() => open()}
+          // onClick={() => open()}
+          onClick={() => setModal({ ...modal, modal1: true })}
         >+</button>
 
       </div>
