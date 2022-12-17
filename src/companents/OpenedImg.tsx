@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { IProduct } from '../models';
+import React from "react";
 
 export const OpenedImg = (props: any) => {
   console.log('OpenedImg: props = ', props.product);

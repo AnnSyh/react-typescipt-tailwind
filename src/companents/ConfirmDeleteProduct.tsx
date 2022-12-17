@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { products } from "../data/products";
+import React from "react";
 import { IProduct } from "../models"
 
 type ConfirmDeleteProductProps = {

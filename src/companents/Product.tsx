@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { IProduct } from "../models"
-// import { FaTimes } from "react-icons/fa"
-import { FaTimes } from '../../node_modules/react-icons/fa'
+import { FaTimes } from "react-icons/fa"
 
 interface ProductProps {
   product: IProduct
@@ -14,7 +13,7 @@ interface ProductProps {
 
 export function Product({ product, passItem, modalShowDeleteProduct }: ProductProps) {
 
-  const [card, setCard] = useState(true);
+  const [card] = useState(true);
   const [details, setDetails] = useState(false);
 
   const cardClass = card ? 'block' : 'hidden'
@@ -23,19 +22,12 @@ export function Product({ product, passItem, modalShowDeleteProduct }: ProductPr
   const btnBgClassName = details ? 'bg-yellow-400' : 'bg-blue-400'
   const btnClasses = ['py-2 px-4 border', btnBgClassName]
 
-  const hideCard = () => {
-    console.log('del card');
-    setCard(prev => !prev)
-  }
-
   return (
     <>
       <div className={cardClases.join(' ')}>
         <FaTimes
           className="hover:cursor-pointer absolute top-3 right-3"
-          // onClick={hideCard} 
           onClick={() => modalShowDeleteProduct(product)}
-        // hideCard={hideCard}
         />
         <img
           onClick={() => passItem(product)}
