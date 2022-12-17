@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTimes } from "react-icons/fa"
 
 interface ModalProps {
   children: React.ReactNode
@@ -16,6 +17,10 @@ export function Modal({ children, title, onClose }: ModalProps) {
       <div
         className="w-[500px] p-5 rounded bg-white fixed  left-1/2 -translate-x-1/2 "
       >
+        <FaTimes
+          className="hover:cursor-pointer absolute top-3 right-3"
+          onClick={onClose}
+        />
         <h1 className='text-2xl text-center md-2'>{title}</h1>
         {children}
       </div>
