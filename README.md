@@ -1,5 +1,8 @@
 # react-typescipt-tailwind
 
+## Картинка
+![Скрин]()
+
 ## Установка и запуск
 - git clone git@github.com:AnnSyh/react-typescipt-tailwind.git - стягиваем проект
 - cd react-typescipt-tailwind/  - переходим в папку проекта
